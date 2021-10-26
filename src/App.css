@@ -3,6 +3,11 @@ body {
   padding: 20px 70px;
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+}
+
 @media (max-width: 800px) {
   body {
     padding: 10px 0;

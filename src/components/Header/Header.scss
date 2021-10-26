@@ -1,0 +1,39 @@
+.header {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  padding-right: 20px;
+  border-bottom: 1px solid rgb(223, 223, 223);
+
+  .logo-container {
+    height: 100%;
+    width: 50px;
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+  }
+
+  .options {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .option {
+      padding: 10px 15px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px black;
+
+      &:hover {
+        color: rgb(0, 183, 255);
+        transition: color 0.35s ease-in-out;
+        text-shadow: 0 0 1px black;
+      }
+    }
+  }
+}
