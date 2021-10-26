@@ -1,10 +1,13 @@
 import React from 'react';
+import notFound from '../../assets/images/404.png';
+import './NotFound.scss';
 
 const NotFound = (props) => {
   return (
-    <div>
-      <h1>NOT FOUND - ERROR 404</h1>
-      <p>The page that you are looking for was not found.</p>
+    <div className='not-found-container'>
+      <img src={notFound} alt='Page not found' width='260' />
+      <h1>ARE YOU HAPPY NOW?</h1>
+      <p>we couldn't find that page.</p>
     </div>
   );
 };
