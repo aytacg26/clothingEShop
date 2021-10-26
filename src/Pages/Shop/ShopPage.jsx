@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SHOP_DATA from '../../data/shop.data';
 import CollectionPreview from '../../components/CollectionPreview/CollectionPreview';
+import Loader from '../../components/Loader/Loader';
 import './ShopPage.scss';
 
 class ShopPage extends Component {
@@ -31,11 +32,7 @@ class ShopPage extends Component {
     const { collections } = this.state;
 
     if (this.state.collections.length === 0) {
-      return (
-        <div>
-          <h2>Loading...</h2>
-        </div>
-      );
+      return <Loader />;
     }
 
     return (
