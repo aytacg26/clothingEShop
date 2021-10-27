@@ -37,4 +37,20 @@
       }
     }
   }
+
+  .user-section {
+    display: flex;
+    align-items: center;
+
+    & img {
+      width: 38px;
+      margin-right: 5px;
+    }
+
+    & span {
+      font-size: 13.5px;
+      font-weight: bold;
+      color: rgb(165, 165, 165);
+    }
+  }
 }

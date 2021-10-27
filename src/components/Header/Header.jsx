@@ -5,8 +5,6 @@ import { auth } from '../../firebase/firebase.utils';
 import './Header.scss';
 
 const Header = ({ currentUser }) => {
-  console.log(currentUser?._delegate);
-
   return (
     <div className='header'>
       <Link className='logo-container' to='/'>
@@ -40,6 +38,12 @@ const Header = ({ currentUser }) => {
           <Link className='option' to='/sign-in'>
             SIGN IN
           </Link>
+        )}
+        {currentUser && (
+          <div className='user-section'>
+            <img src={currentUser.photoURL} alt={currentUser.displayName} />
+            <span>{currentUser.displayName}</span>
+          </div>
         )}
       </div>
     </div>

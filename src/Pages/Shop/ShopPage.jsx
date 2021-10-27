@@ -18,13 +18,11 @@ class ShopPage extends Component {
   componentDidMount() {
     //We are mimicing the request from server and response lateness
     this.timer = setTimeout(() => {
-      console.log('Timer is working...');
       this.setState({ collections: SHOP_DATA });
     }, 300);
   }
 
   componentWillUnmount() {
-    console.log('Unmounting the timer...');
     clearTimeout(this.timer);
   }
 

@@ -5,7 +5,7 @@ import AboutPage from './Pages/About/AboutPage';
 import ShopPage from './Pages/Shop/ShopPage';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import './App.css';
 
 const NotFound = lazy(() => import('./Pages/NotFound/NotFound'));
@@ -23,8 +23,26 @@ class App extends Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      this.setState({ authUser: user });
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      //this.setState({ authUser: user });
+      // await createUserProfileDocument(user);
+
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot((snapShot) => {
+          this.setState(
+            {
+              authUser: {
+                id: snapShot.id,
+                ...snapShot.data(),
+              },
+            },
+            () => console.log(this.state) //second param of setState(), callback fn
+          );
+        });
+      } else {
+        this.setState({ authUser: null });
+      }
     });
   }
 
