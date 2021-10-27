@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import FormInput from '../FormInput/FormInput';
+import Button from '../Button/Button';
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 import './SignIn.scss';
 
 class SignIn extends Component {
@@ -15,9 +17,16 @@ class SignIn extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.email);
-    console.log(this.state.password);
-    this.setState({ email: '', password: '' });
+
+    const { email, password } = this.state;
+
+    if (email.trim().length !== 0 && password.trim().length !== 0) {
+      console.log(this.state.email);
+      console.log(this.state.password);
+      this.setState({ email: '', password: '' });
+    } else {
+      console.log('Email or password is not correct, please check them.');
+    }
   }
 
   inputHandler = (e) => {
@@ -44,8 +53,10 @@ class SignIn extends Component {
             value={this.state.password}
             onChange={this.inputHandler}
           />
-
-          <input type='submit' value='Sign in' />
+          <Button type='submit'>Sign In</Button>
+          <Button type='button' onClick={signInWithGoogle}>
+            Sign In with Google
+          </Button>
         </form>
       </div>
     );

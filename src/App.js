@@ -5,12 +5,29 @@ import AboutPage from './Pages/About/AboutPage';
 import ShopPage from './Pages/Shop/ShopPage';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
+import { auth } from './firebase/firebase.utils';
 import './App.css';
 
 const NotFound = lazy(() => import('./Pages/NotFound/NotFound'));
 const SignInPage = lazy(() => import('./Pages/SignInPage/SignInPage'));
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      authUser: null,
+    };
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      this.setState({ authUser: user });
+
+      console.log(user);
+    });
+  }
+
   render() {
     return (
       <div>
