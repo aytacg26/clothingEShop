@@ -13,10 +13,22 @@
   font-weight: bolder;
   border: none;
   cursor: pointer;
+  transition: 0.35s cubic-bezier(0.39, 0.575, 0.565, 1);
+  transition-property: background-color color;
 
   &:hover {
     background-color: white;
     color: black;
     border: 1px solid black;
+  }
+
+  &.google-sign-in {
+    background-color: #4285f4;
+    color: #fff;
+
+    &:hover {
+      background-color: #2057af;
+      border: none;
+    }
   }
 }

@@ -1,9 +1,12 @@
 import React from 'react';
 import './Button.scss';
 
-const Button = ({ children, ...otherProps }) => {
+//@TODO : isGoogleSignIn prop is not a good idea, I must find more general styling way
+const Button = ({ children, isGoogleSignIn, ...otherProps }) => {
+  const buttonClass = `${isGoogleSignIn && 'google-sign-in'} custom-button`;
+
   return (
-    <button className='custom-button' {...otherProps}>
+    <button className={buttonClass} {...otherProps}>
       {children}
     </button>
   );

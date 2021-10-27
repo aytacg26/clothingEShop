@@ -53,10 +53,12 @@ class SignIn extends Component {
             value={this.state.password}
             onChange={this.inputHandler}
           />
-          <Button type='submit'>Sign In</Button>
-          <Button type='button' onClick={signInWithGoogle}>
-            Sign In with Google
-          </Button>
+          <div className='buttons'>
+            <Button type='submit'>Sign In</Button>
+            <Button type='button' onClick={signInWithGoogle} isGoogleSignIn>
+              Sign In with Google
+            </Button>
+          </div>
         </form>
       </div>
     );

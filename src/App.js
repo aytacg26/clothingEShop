@@ -20,18 +20,22 @@ class App extends Component {
     };
   }
 
-  componentDidMount() {
-    auth.onAuthStateChanged((user) => {
-      this.setState({ authUser: user });
+  unsubscribeFromAuth = null;
 
-      console.log(user);
+  componentDidMount() {
+    this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+      this.setState({ authUser: user });
     });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
   }
 
   render() {
     return (
       <div>
-        <Header />
+        <Header currentUser={this.state.authUser} />
 
         <Suspense fallback={<Loader />}>
           <Switch>
