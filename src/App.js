@@ -27,15 +27,12 @@ class App extends Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapShot) => {
-          this.setState(
-            {
-              authUser: {
-                id: snapShot.id,
-                ...snapShot.data(),
-              },
+          this.setState({
+            authUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
             },
-            () => console.log(this.state) //second param of setState(), callback fn
-          );
+          });
         });
       } else {
         this.setState({ authUser: null });

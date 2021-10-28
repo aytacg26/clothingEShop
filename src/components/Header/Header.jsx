@@ -41,7 +41,9 @@ const Header = ({ currentUser }) => {
         )}
         {currentUser && (
           <div className='user-section'>
-            <img src={currentUser.photoURL} alt={currentUser.displayName} />
+            {currentUser.photoURL && (
+              <img src={currentUser.photoURL} alt={currentUser.displayName} />
+            )}
             <span>{currentUser.displayName}</span>
           </div>
         )}
