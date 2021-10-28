@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import FormInput from '../FormInput/FormInput';
 import Button from '../Button/Button';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 import './SignIn.scss';
 
 class SignIn extends Component {
@@ -15,17 +16,25 @@ class SignIn extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
 
     const { email, password } = this.state;
 
     if (email.trim().length !== 0 && password.trim().length !== 0) {
-      console.log(this.state.email);
-      console.log(this.state.password);
-      this.setState({ email: '', password: '' });
+      try {
+        await auth.signInWithEmailAndPassword(email, password);
+
+        this.setState({ email: '', password: '' });
+        this.props.history.push('/');
+      } catch (error) {
+        if (error.code === 'auth/wrong-password') {
+          alert(`The email or password is invalid.`);
+          return;
+        }
+      }
     } else {
-      console.log('Email or password is not correct, please check them.');
+      alert('Please enter email and password');
     }
   }
 
@@ -65,4 +74,4 @@ class SignIn extends Component {
   }
 }
 
-export default SignIn;
+export default withRouter(SignIn);

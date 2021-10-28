@@ -50,6 +50,7 @@ class SignUp extends Component {
       } catch (error) {
         //TODO : use switch-case
         if (error.code === 'auth/email-already-in-use') {
+          //TODO : Instead of alert, create modal
           alert(`The email address ${email} already exists.`);
           return;
         }
